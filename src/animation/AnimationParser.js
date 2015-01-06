@@ -190,41 +190,39 @@ Phaser.AnimationParser = {
 
         for (var key in frames)
         {
-            if (frames.hasOwnProperty(key)) {
-                var uuid = game.rnd.uuid();
+            var uuid = game.rnd.uuid();
 
-                newFrame = data.addFrame(new Phaser.Frame(
-                    i,
-                    frames[key].frame.x,
-                    frames[key].frame.y,
-                    frames[key].frame.w,
-                    frames[key].frame.h,
-                    key,
-                    uuid
-                ));
+            newFrame = data.addFrame(new Phaser.Frame(
+                i,
+                frames[key].frame.x,
+                frames[key].frame.y,
+                frames[key].frame.w,
+                frames[key].frame.h,
+                key,
+                uuid
+            ));
 
-                PIXI.TextureCache[uuid] = new PIXI.Texture(PIXI.BaseTextureCache[cacheKey], {
-                    x: frames[key].frame.x,
-                    y: frames[key].frame.y,
-                    width: frames[key].frame.w,
-                    height: frames[key].frame.h
-                });
+            PIXI.TextureCache[uuid] = new PIXI.Texture(PIXI.BaseTextureCache[cacheKey], {
+                x: frames[key].frame.x,
+                y: frames[key].frame.y,
+                width: frames[key].frame.w,
+                height: frames[key].frame.h
+            });
 
-                if (frames[key].trimmed)
-                {
-                    newFrame.setTrim(
-                        frames[key].trimmed,
-                        frames[key].sourceSize.w,
-                        frames[key].sourceSize.h,
-                        frames[key].spriteSourceSize.x,
-                        frames[key].spriteSourceSize.y,
-                        frames[key].spriteSourceSize.w,
-                        frames[key].spriteSourceSize.h
-                    );
-                }
-
-                i++;
+            if (frames[key].trimmed)
+            {
+                newFrame.setTrim(
+                    frames[key].trimmed,
+                    frames[key].sourceSize.w,
+                    frames[key].sourceSize.h,
+                    frames[key].spriteSourceSize.x,
+                    frames[key].spriteSourceSize.y,
+                    frames[key].spriteSourceSize.w,
+                    frames[key].spriteSourceSize.h
+                );
             }
+
+            i++;
         }
 
         return data;
